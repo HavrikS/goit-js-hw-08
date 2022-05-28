@@ -3,7 +3,7 @@ const form = document.querySelector('.feedback-form');
 const input = document.querySelector('input');
 const textarea = document.querySelector('textarea');
 
-const formData = {};
+let formData = {};
 const STORAGE_KEY = "feedback-form-state";
 
 form.addEventListener('submit', formHandler);
@@ -15,6 +15,7 @@ function formHandler(e) {
     textarea.textContent = "";
     console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
     localStorage.removeItem(STORAGE_KEY);
+    formData = {};
 };
 
 function textFormormHandler(e) {
@@ -27,8 +28,10 @@ populateTextarea();
 function populateTextarea() {
     const sawedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (sawedMessage && Object.keys(sawedMessage).length !== 0 ) {
-        input.value = [sawedMessage.email];
-        textarea.textContent = [sawedMessage.message];
+        input.value = sawedMessage.email;
+        textarea.textContent = sawedMessage.message;
+        formData.email = sawedMessage.email;
+        formData.message = sawedMessage.email;
     };
 };
 
