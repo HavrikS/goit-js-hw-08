@@ -28,10 +28,10 @@ populateTextarea();
 function populateTextarea() {
     const sawedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (sawedMessage && Object.keys(sawedMessage).length !== 0 ) {
-        input.value = sawedMessage.email;
+        (sawedMessage.email) ? input.value = sawedMessage.email : input.value = '';
         textarea.textContent = sawedMessage.message;
         formData.email = sawedMessage.email;
-        formData.message = sawedMessage.email;
+        formData.message = sawedMessage.message;
     };
 };
 
